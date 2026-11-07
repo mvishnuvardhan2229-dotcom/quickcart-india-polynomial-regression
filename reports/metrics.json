@@ -1,0 +1,149 @@
+{
+  "project": "QuickCart India",
+  "target": "Impulse_Buying_Frequency_Score",
+  "target_meaning": "Self-reported ordered survey score from 1 (Never) to 5 (Almost Always)",
+  "dataset": {
+    "source_page": "https://github.com/mvishnuvardhan2229-dotcom/quickcart-india-polynomial-regression",
+    "rows": 800,
+    "original_columns": 10,
+    "cleaned_columns": 12,
+    "missing_app_answers_filled": 35
+  },
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "training_rows": 640,
+    "testing_rows": 160,
+    "stratified_by_target": true
+  },
+  "features": {
+    "input_count_before_encoding": 14,
+    "categorical": [
+      "Most_Used_App",
+      "Ordering_Frequency_Change",
+      "Average_Order_Value",
+      "Reliance_On_Traditional_Bulk_Shopping",
+      "Monthly_Budget_Percentage_On_Apps",
+      "Overall_Grocery_Expenditure_Impact"
+    ],
+    "numerical": [
+      "No_Home_Inventory_Agreement_Score"
+    ],
+    "binary": [
+      "Shifted_Category_01",
+      "Shifted_Category_02",
+      "Shifted_Category_03",
+      "Shifted_Category_04",
+      "Shifted_Category_05",
+      "Shifted_Category_06",
+      "Shifted_Category_07"
+    ],
+    "excluded_impulse_triggers": true
+  },
+  "selected_model": "Mean baseline",
+  "best_regression_by_test_mae": "Linear Regression",
+  "regression_beats_baseline_by_test_mae": false,
+  "models": {
+    "Mean baseline": {
+      "Train MAE": 0.8598437499999999,
+      "Train MSE": 1.055625,
+      "Train RMSE": 1.0274361294017258,
+      "Train R2": 0.0,
+      "Train Median AE": 0.6499999999999999,
+      "Train Explained variance": 0.0,
+      "Test MAE": 0.8493749999999999,
+      "Test MSE": 1.029375,
+      "Test RMSE": 1.0145811943851513,
+      "Test R2": -3.79492239381829e-05,
+      "Test Median AE": 0.6499999999999999,
+      "Test Explained variance": 2.220446049250313e-16
+    },
+    "Linear Regression": {
+      "Train MAE": 0.8414998271306662,
+      "Train MSE": 1.0287075935357513,
+      "Train RMSE": 1.0142522336853645,
+      "Train R2": 0.025499023293545364,
+      "Train Median AE": 0.6261543097677214,
+      "Train Explained variance": 0.025499023293545364,
+      "Test MAE": 0.8577233048413067,
+      "Test MSE": 1.0745535001953508,
+      "Test RMSE": 1.0366067239774932,
+      "Test R2": -0.0439288681644332,
+      "Test Median AE": 0.6155913513594529,
+      "Test Explained variance": -0.043909048141960394
+    },
+    "Ridge Polynomial Regression (degree 2)": {
+      "Train MAE": 0.6205463156093052,
+      "Train MSE": 0.6105916251412269,
+      "Train RMSE": 0.7814036249859779,
+      "Train R2": 0.4215828299431835,
+      "Train Median AE": 0.5103202869414731,
+      "Train Explained variance": 0.4215828299431834,
+      "Test MAE": 0.8885880425156165,
+      "Test MSE": 1.1916486994949822,
+      "Test RMSE": 1.0916266300777855,
+      "Test R2": -0.15768686983687674,
+      "Test Median AE": 0.781495439190411,
+      "Test Explained variance": -0.15703957941495816
+    },
+    "Polynomial Regression (degree 2)": {
+      "Train MAE": 0.5266804964160947,
+      "Train MSE": 0.47225317459273536,
+      "Train RMSE": 0.6872067917248311,
+      "Train R2": 0.5526316877747919,
+      "Train Median AE": 0.42209469430691726,
+      "Train Explained variance": 0.5526316877747919,
+      "Test MAE": 1.2487354805840583,
+      "Test MSE": 2.748357195601565,
+      "Test RMSE": 1.6578169970179353,
+      "Test R2": -1.6700293805699995,
+      "Test Median AE": 0.8978353735096676,
+      "Test Explained variance": -1.6670712634412115
+    }
+  },
+  "cross_validation": [
+    {
+      "Model": "Mean baseline",
+      "Mean CV MAE": 0.861041259765625,
+      "Std CV MAE": 0.04524644278933682,
+      "Mean CV RMSE": 1.0287137811981757,
+      "Mean CV R2": -0.011893856241625044
+    },
+    {
+      "Model": "Linear Regression",
+      "Mean CV MAE": 0.8716806994408051,
+      "Std CV MAE": 0.04729311158849315,
+      "Mean CV RMSE": 1.0550638927283287,
+      "Mean CV R2": -0.06561111545772258
+    },
+    {
+      "Model": "Ridge Polynomial Regression (degree 2)",
+      "Mean CV MAE": 0.9460291621001866,
+      "Std CV MAE": 0.08954118189917144,
+      "Mean CV RMSE": 1.1859192984583573,
+      "Mean CV R2": -0.34229551457848456
+    },
+    {
+      "Model": "Polynomial Regression (degree 2)",
+      "Mean CV MAE": 1.9825497660357805,
+      "Std CV MAE": 0.40526133414118465,
+      "Mean CV RMSE": 3.3069621663892037,
+      "Mean CV R2": -11.464641792867868
+    }
+  ],
+  "rounded_polynomial_exact_match": 0.3125,
+  "rounded_polynomial_within_one_point": 0.7125,
+  "interpretation": "None of the regression models has a lower test MAE than the mean baseline. The evidence from this test split does not support deploying a more complex regression model as a better predictor.",
+  "limitations": [
+    "The target is an ordinal survey choice, not a continuous measurement.",
+    "Each row is a survey response, not an order transaction.",
+    "The dataset has no exact purchase amount, location, age, income or customer ID.",
+    "Results describe this dataset and split only; they do not prove causation.",
+    "A held-out test result does not guarantee future real-world performance."
+  ],
+  "versions": {
+    "python": "3.13.18",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.6.1"
+  }
+}

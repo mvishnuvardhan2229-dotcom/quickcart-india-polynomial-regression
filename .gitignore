@@ -1,0 +1,46 @@
+cat > .gitignore <<'EOF'
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Personal instructions
+MY_SETUP_GUIDE.md
+
+# Model files (download separately)
+model/*
+!model/.gitkeep
+
+# Generated reports (download separately)
+reports/*
+!reports/.gitkeep
+
+# Temporary archives
+*.zip
+EOF
